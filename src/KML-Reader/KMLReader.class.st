@@ -19,6 +19,13 @@ KMLReader class >> on: aStream [
 ]
 
 { #category : #'as yet unclassified' }
+KMLReader >> buildModel [
+	^ KMLModelBuilderVisitor new 
+		visit: doc;
+		model
+]
+
+{ #category : #'as yet unclassified' }
 KMLReader >> initializeFromStream: aReadStream [ 
 	doc := (XMLDOMParser on: aReadStream)  
 		nodeFactory: KMLNodeFactory new;

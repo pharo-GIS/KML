@@ -1,7 +1,7 @@
 Class {
 	#name : #KMLSimpleFieldElement,
 	#superclass : #KMLElement,
-	#category : #'KML-Reader'
+	#category : #'KML-Reader-Model'
 }
 
 { #category : #'as yet unclassified' }

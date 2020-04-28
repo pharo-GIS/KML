@@ -31,13 +31,18 @@ KMLNodeFactory >> classForElement: aQualifiedName namespaceURI: aURI localName: 
 
 { #category : #'as yet unclassified' }
 KMLNodeFactory >> classForElementNamed: aString [ 
-	^ (KMLObject allSubclasses, KMLElement allSubclasses) 
-		detect: [ :each | (each respondsTo: #kmlElementName) and: [ each kmlElementName = aString ] ]
+	^ KMLElement allSubclasses
+		detect: [ :each | each matchesElementName: aString  ]
 		ifNone: [ Error signal: 'Cannot find element class for ', aString ]
 ]
 
 { #category : #accessing }
 KMLNodeFactory >> documentClass [
 
-	^ KMLDocument
+	^ KMLXMLDocument
+]
+
+{ #category : #'as yet unclassified' }
+KMLNodeFactory >> matchesElementName: aString [
+	^ self kmlElementName = aString
 ]
