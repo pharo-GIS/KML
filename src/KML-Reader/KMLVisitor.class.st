@@ -41,6 +41,11 @@ KMLVisitor >> visitElementWithChildren: aKMLElement [
 ]
 
 { #category : #visiting }
+KMLVisitor >> visitFolderElement: aKMLFolderElement [ 
+	^ self visitElementWithChildren: aKMLFolderElement 
+]
+
+{ #category : #visiting }
 KMLVisitor >> visitIgnoredElement: aKMLIgnoredElement [ 
 	"if the names says so just let's ignore it"
 	^ nil

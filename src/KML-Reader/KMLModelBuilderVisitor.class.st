@@ -23,6 +23,15 @@ KMLModelBuilderVisitor >> use: aKMLObject during: aBlock [
 		currentObject := previous ]
 ]
 
+{ #category : #'as yet unclassified' }
+KMLModelBuilderVisitor >> useContainer: aKMLContainer during: aBlock [
+	| previous |
+	previous := currentContainer.
+	currentContainer := aKMLContainer.
+	aBlock ensure: [ 
+		currentContainer := previous ]
+]
+
 { #category : #visiting }
 KMLModelBuilderVisitor >> visitCoordinatesElement: aKMLCoordinatesElement [ 
 	| rawCoordinates |
@@ -38,6 +47,17 @@ KMLModelBuilderVisitor >> visitDocument: aKMLDocument [
 	currentContainer := model.
 	currentObject := model.
 	^ self visitElementWithChildren: aKMLDocument 
+]
+
+{ #category : #visiting }
+KMLModelBuilderVisitor >> visitFolderElement: aKMLFolderElement [ 
+	| folder |
+	folder := KMLFolder new.
+	self 
+		useContainer: folder
+		during: [ self visitElementWithChildren: aKMLFolderElement ].
+	currentContainer addFeature: folder.
+	^ folder
 ]
 
 { #category : #visting }

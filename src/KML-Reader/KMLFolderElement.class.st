@@ -8,3 +8,8 @@ Class {
 KMLFolderElement class >> kmlElementName [ 
 	^ 'Folder'
 ]
+
+{ #category : #visiting }
+KMLFolderElement >> acceptKMLVisitor: aKMLVisitor [ 
+	^ aKMLVisitor visitFolderElement: self 
+]
