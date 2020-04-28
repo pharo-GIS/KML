@@ -2,7 +2,8 @@ Class {
 	#name : #KMLPlacemark,
 	#superclass : #KMLFeature,
 	#instVars : [
-		'geometry'
+		'geometry',
+		'description'
 	],
 	#category : #'KML-Core'
 }
@@ -10,4 +11,9 @@ Class {
 { #category : #accessing }
 KMLPlacemark >> addGeometry: aKMLGeometry [
 	geometry := aKMLGeometry
+]
+
+{ #category : #accessing }
+KMLPlacemark >> description: aString [ 
+	description := aString
 ]

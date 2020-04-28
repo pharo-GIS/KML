@@ -2,18 +2,24 @@ Class {
 	#name : #KMLPolygon,
 	#superclass : #KMLGeometry,
 	#instVars : [
-		'geometries'
+		'outerBoundary',
+		'innerBoundaries'
 	],
 	#category : #'KML-Core'
 }
 
 { #category : #accessing }
-KMLPolygon >> addGeometry: aGeometryObject [ 
-	self geometries add: aGeometryObject 
+KMLPolygon >> addInnerBoundary: aGeometryObject [  
+	self innerBoundaries add: aGeometryObject 
 ]
 
 { #category : #accessing }
-KMLPolygon >> geometries [
-	^ geometries ifNil: [ 
-		geometries := OrderedCollection new ]
+KMLPolygon >> innerBoundaries [
+	^ innerBoundaries ifNil: [ 
+		innerBoundaries := OrderedCollection new ]
+]
+
+{ #category : #accessing }
+KMLPolygon >> outerBoundary: aGeometryObject [ 
+	outerBoundary := aGeometryObject 
 ]
