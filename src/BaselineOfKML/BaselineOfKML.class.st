@@ -11,13 +11,25 @@ BaselineOfKML >> baseline: spec [
 	spec for: #'common' do: [
 		self xmlParser: spec.
 		spec 
-			package: #'KML-Core';
+			package: #'KML-Core' with: [
+				spec requires: #('Geography' ). ];
 			package: #'KML-Reader' with: [
 				spec requires: #('KML-Core' 'XMLParser' ). ].
 		spec 
 			group: 'Core' with: #('KML-Core' );
 			group: 'default' with: #('KML-Core' 'KML-Reader'). ].
 
+]
+
+{ #category : #'as yet unclassified' }
+BaselineOfKML >> geography: spec [
+
+	spec
+		baseline: 'Geography' with: [ 
+			spec 
+				repository: 'github://zweidenker/Geography'].
+			
+	
 ]
 
 { #category : #'as yet unclassified' }
