@@ -9,13 +9,18 @@ Class {
 
 { #category : #'instance creation' }
 KMLReader class >> file: aFileReference [ 
-	^ self on: aFileReference readStream
+	^ self on: aFileReference asFileReference readStream
 ]
 
 { #category : #'instance creation' }
 KMLReader class >> on: aStream [
 	^ self new 
 		initializeFromStream: aStream
+]
+
+{ #category : #accessing }
+KMLReader >> allPlacemarks [
+	self shouldBeImplemented.
 ]
 
 { #category : #'as yet unclassified' }

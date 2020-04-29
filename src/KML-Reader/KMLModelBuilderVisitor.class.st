@@ -28,7 +28,7 @@ KMLModelBuilderVisitor >> visitCoordinatesElement: aKMLCoordinatesElement [
 	rawCoordinates := (Character space split: aKMLCoordinatesElement contentString trimBoth) reject: #isEmpty.
 	currentObject coordinates: (rawCoordinates collect: [ :each| | tuple |
 		tuple := $, split: each.
-		tuple first asNumber @ tuple second asNumber ])
+		tuple first asNumber @@ tuple second asNumber ])
 ]
 
 { #category : #visiting }

@@ -13,7 +13,17 @@ KMLPlacemark >> addGeometry: aKMLGeometry [
 	geometry := aKMLGeometry
 ]
 
+{ #category : #converting }
+KMLPlacemark >> asGeoPolygons [
+	^ geometry asGeoPolygons 
+]
+
 { #category : #accessing }
 KMLPlacemark >> description: aString [ 
 	description := aString
+]
+
+{ #category : #'as yet unclassified' }
+KMLPlacemark >> placemarks [
+	^ Array with: self
 ]
