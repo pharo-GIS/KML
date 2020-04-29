@@ -10,6 +10,7 @@ BaselineOfKML >> baseline: spec [
 
 	spec for: #'common' do: [
 		self xmlParser: spec.
+		self geography: spec.
 		spec 
 			package: #'KML-Core' with: [
 				spec requires: #('Geography' ). ];
