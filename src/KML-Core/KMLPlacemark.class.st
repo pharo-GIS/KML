@@ -27,3 +27,8 @@ KMLPlacemark >> description: aString [
 KMLPlacemark >> placemarks [
 	^ Array with: self
 ]
+
+{ #category : #printing }
+KMLPlacemark >> printOn: aStream [
+	aStream << 'Placemark: ' << name asString
+]

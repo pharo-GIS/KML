@@ -2,7 +2,9 @@ Class {
 	#name : #KMLReader,
 	#superclass : #Object,
 	#instVars : [
-		'doc'
+		'doc',
+		'stream',
+		'document'
 	],
 	#category : #'KML-Reader'
 }
@@ -15,24 +17,41 @@ KMLReader class >> file: aFileReference [
 { #category : #'instance creation' }
 KMLReader class >> on: aStream [
 	^ self new 
-		initializeFromStream: aStream
+		stream: aStream
 ]
 
-{ #category : #accessing }
-KMLReader >> allPlacemarks [
-	self shouldBeImplemented.
+{ #category : #parsing }
+KMLReader class >> parse: aStringOrStream [
+	^ (self on: aStringOrStream readStream)
+		parse
 ]
 
 { #category : #'as yet unclassified' }
 KMLReader >> buildModel [
 	^ KMLModelBuilderVisitor new 
-		visit: doc;
+		visit: self document;
 		model
 ]
 
+{ #category : #accessing }
+KMLReader >> document [
+	^ document ifNil: [ 
+		document := self parseDocument  ]
+]
+
+{ #category : #parsing }
+KMLReader >> parse [ 	
+	^ self buildModel
+]
+
 { #category : #'as yet unclassified' }
-KMLReader >> initializeFromStream: aReadStream [ 
-	doc := (XMLDOMParser on: aReadStream)  
+KMLReader >> parseDocument [
+	^ (XMLDOMParser on: stream)  
 		nodeFactory: KMLNodeFactory new;
 		parseDocument
+]
+
+{ #category : #accessing }
+KMLReader >> stream: aStream [
+	stream := aStream
 ]
