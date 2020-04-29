@@ -12,8 +12,3 @@ KMLFeature >> name: aString [
 	
 	name := aString
 ]
-
-{ #category : #'as yet unclassified' }
-KMLFeature >> placemarks [
-	self shouldBeImplemented.
-]

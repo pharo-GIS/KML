@@ -31,6 +31,11 @@ KMLPolygon >> innerBoundaries [
 ]
 
 { #category : #accessing }
+KMLPolygon >> outerBoundary [
+	^ outerBoundary
+]
+
+{ #category : #accessing }
 KMLPolygon >> outerBoundary: aGeometryObject [ 
 	outerBoundary := aGeometryObject 
 ]

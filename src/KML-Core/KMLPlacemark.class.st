@@ -23,6 +23,11 @@ KMLPlacemark >> description: aString [
 	description := aString
 ]
 
+{ #category : #accessing }
+KMLPlacemark >> geometry [
+	^ geometry
+]
+
 { #category : #'as yet unclassified' }
 KMLPlacemark >> placemarks [
 	^ Array with: self
