@@ -107,6 +107,11 @@ KMLVisitor >> visitRootElement: aKMLElement [
 ]
 
 { #category : #visiting }
+KMLVisitor >> visitSchemaElement: aKMLSchemaElement [ 
+	^ self visitElementWithChildren: aKMLSchemaElement 
+]
+
+{ #category : #visiting }
 KMLVisitor >> visitStyleElement: aKMLStyleElement [ 
 	^ self visitElementWithChildren: aKMLStyleElement 
 ]

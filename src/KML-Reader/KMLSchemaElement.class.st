@@ -8,3 +8,8 @@ Class {
 KMLSchemaElement class >> kmlElementName [ 
 	^ 'Schema'
 ]
+
+{ #category : #visiting }
+KMLSchemaElement >> acceptKMLVisitor: aKMLVisitor [ 
+	^ aKMLVisitor visitSchemaElement: self
+]

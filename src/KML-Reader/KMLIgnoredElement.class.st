@@ -6,7 +6,7 @@ Class {
 
 { #category : #testing }
 KMLIgnoredElement class >> ignoredNames [
-	^ #( PolyStyle BalloonStyle StyleMap Pair key styleUrl tessellate )
+	^ #( PolyStyle BalloonStyle StyleMap Pair key styleUrl tessellate SimpleField ExtendedData )
 ]
 
 { #category : #testing }
