@@ -6,12 +6,13 @@ Class {
 
 { #category : #testing }
 KMLParameterElement class >> matchesElementName: aString [
+	
 	^ self parameterNames includes: aString
 ]
 
 { #category : #testing }
 KMLParameterElement class >> parameterNames [
-	^ #( color width fill outline )
+	^ #( color width fill outline scale href displayMode hotSpot 	longitude latitude altitude heading tilt 'gx:fovy' range altitudeMode)
 ]
 
 { #category : #visiting }

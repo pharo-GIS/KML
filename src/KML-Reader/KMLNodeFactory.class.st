@@ -24,13 +24,15 @@ KMLNodeFactory >> classForElement: aQualifiedName namespaceURI: aURI attributes:
 
 { #category : #accessing }
 KMLNodeFactory >> classForElement: aQualifiedName namespaceURI: aURI localName: aLocalName attributes: anAssociationCollection [
+	
 	^ (aURI = 'http://www.opengis.net/kml/2.2')
 		ifTrue: [ self classForElementNamed: aLocalName "attributes: anAssociationCollection" ]
-		ifFalse: [ self elementClass ]
+		ifFalse: [ KMLUnsupportedNamespaceElement ]
 ]
 
 { #category : #'as yet unclassified' }
 KMLNodeFactory >> classForElementNamed: aString [ 
+	(aString beginsWith: 'gx') ifTrue: [ self halt].
 	^ KMLElement allSubclasses
 		detect: [ :each | each matchesElementName: aString  ]
 		ifNone: [ Error signal: 'Cannot find element class for ', aString ]
