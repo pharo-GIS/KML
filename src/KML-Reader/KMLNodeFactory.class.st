@@ -32,7 +32,7 @@ KMLNodeFactory >> classForElement: aQualifiedName namespaceURI: aURI localName: 
 
 { #category : #'as yet unclassified' }
 KMLNodeFactory >> classForElementNamed: aString [ 
-	(aString beginsWith: 'gx') ifTrue: [ self halt].
+
 	^ KMLElement allSubclasses
 		detect: [ :each | each matchesElementName: aString  ]
 		ifNone: [ Error signal: 'Cannot find element class for ', aString ]
