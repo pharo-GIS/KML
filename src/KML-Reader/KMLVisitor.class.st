@@ -16,11 +16,6 @@ KMLVisitor >> visitAll: aCollection [
 ]
 
 { #category : #visiting }
-KMLVisitor >> visitCascadingStyleElement: aKMLStyleElement [ 
-	^ self visitElementWithChildren: aKMLStyleElement 
-]
-
-{ #category : #visiting }
 KMLVisitor >> visitCoordinatesElement: aKMLCoordinatesElement [ 
 	^ self visitElementWithChildren: aKMLCoordinatesElement 
 ]
