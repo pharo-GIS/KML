@@ -35,7 +35,7 @@ KMLNodeFactory >> classForElementNamed: aString [
 
 	^ KMLElement allSubclasses
 		detect: [ :each | each matchesElementName: aString  ]
-		ifNone: [ Error signal: 'Cannot find element class for ', aString ]
+		ifNone: [ KMLNotImpementedElement ]
 ]
 
 { #category : #accessing }

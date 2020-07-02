@@ -10,25 +10,27 @@ BaselineOfKML >> baseline: spec [
 
 	spec for: #'common' do: [
 		self xmlParser: spec.
-		self geography: spec.
+		self pharoOGC: spec.
 		spec 
 			package: #'KML-Core' with: [
-				spec requires: #('Geography' ). ];
+				spec requires: #('OGC' ). ];
 			package: #'KML-Reader' with: [
-				spec requires: #('KML-Core' 'XMLParser' ). ].
+				spec requires: #('KML-Core' 'XMLParser' ). ];
+			package: #'KML-Reader-Tests' with: [
+				spec requires: #('KML-Reader' ). ].
 		spec 
 			group: 'Core' with: #('KML-Core' );
-			group: 'default' with: #('KML-Core' 'KML-Reader'). ].
+			group: 'default' with: #('KML-Core' 'KML-Reader' 'KML-Reader-Tests'). ].
 
 ]
 
 { #category : #'as yet unclassified' }
-BaselineOfKML >> geography: spec [
+BaselineOfKML >> pharoOGC: spec [
 
 	spec
-		baseline: 'Geography' with: [ 
+		baseline: 'OGC' with: [ 
 			spec 
-				repository: 'github://zweidenker/Geography'].
+				repository: 'github://Pharo-GIS/OGC-Pharo'].
 			
 	
 ]

@@ -56,6 +56,11 @@ KMLVisitor >> visitInnerBoundayIsElement: aKMLInnerBoundaryIsElement [
 	^ self visitElementWithChildren: aKMLInnerBoundaryIsElement 
 ]
 
+{ #category : #'as yet unclassified' }
+KMLVisitor >> visitLineStringElement: aKMLLineStringElement [ 
+	^ self visitElementWithChildren: aKMLLineStringElement 
+]
+
 { #category : #visiting }
 KMLVisitor >> visitLineStyleElement: aKMLLineStyleElement [ 
 	^ self visitElementWithChildren: aKMLLineStyleElement 
@@ -89,6 +94,11 @@ KMLVisitor >> visitParameterElement: aKMLParameterElement [
 { #category : #visiting }
 KMLVisitor >> visitPlacemarkElement: aKMLPlacemarkElement [ 
 	^ self visitElementWithChildren: aKMLPlacemarkElement 
+]
+
+{ #category : #visiting }
+KMLVisitor >> visitPointElement: aKMLPointElement [ 
+	^ self visitElementWithChildren: aKMLPointElement 
 ]
 
 { #category : #visiting }

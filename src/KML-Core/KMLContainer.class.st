@@ -17,6 +17,11 @@ KMLContainer >> allPlacemarks [
 	^ features flatCollect: #placemarks
 ]
 
+{ #category : #accessing }
+KMLContainer >> features [
+	^ features
+]
+
 { #category : #initialization }
 KMLContainer >> initialize [ 
 	super initialize.

@@ -1,0 +1,9 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'KML',
+      #directory : 'src',
+      #platforms : [ #pharo ]
+    }
+  ]
+}
