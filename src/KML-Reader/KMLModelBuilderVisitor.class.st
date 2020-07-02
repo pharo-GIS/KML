@@ -81,6 +81,16 @@ KMLModelBuilderVisitor >> visitInnerBoundayIsElement: aKMLInnerBoundaryIsElement
 	^ holder
 ]
 
+{ #category : #'as yet unclassified' }
+KMLModelBuilderVisitor >> visitLineStringElement: aKMLLineStringElement [ 
+	| lineString |
+	lineString := OGCLineString new .
+	self
+		use: lineString
+		during: [ self visitElementWithChildren: aKMLLineStringElement ].
+	currentObject addGeometry: lineString
+]
+
 { #category : #visting }
 KMLModelBuilderVisitor >> visitLinearRingElement: aKMLLinearRingElement [ 
 	| linearRing |
@@ -154,4 +164,15 @@ KMLModelBuilderVisitor >> visitPolygonElement: aKMLPolygonElement [
 		use: polygon
 		during: [ self visitElementWithChildren: aKMLPolygonElement ].
 	currentObject addGeometry: polygon
+]
+
+{ #category : #visting }
+KMLModelBuilderVisitor >> visitStyleElement: aKMLLinearRingElement [ 
+	| style |
+	style := KMLStyle new.
+	self
+		use: style 
+		during: [ self visitElementWithChildren: aKMLLinearRingElement ].
+	currentObject style: style.
+	^ style
 ]
