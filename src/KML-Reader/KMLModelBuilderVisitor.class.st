@@ -26,11 +26,20 @@ KMLModelBuilderVisitor >> use: aKMLObject during: aBlock [
 KMLModelBuilderVisitor >> visitCoordinatesElement: aKMLCoordinatesElement [ 
 	| rawCoordinates |
 	rawCoordinates := (Character space split: aKMLCoordinatesElement contentString trimBoth) reject: #isEmpty.
-	currentObject coordinates: (rawCoordinates collect: [ :each| | tuple |
-		tuple := $, split: each.
-		OGCPoint 
-			x: tuple first asNumber 
-			y: tuple second asNumber ]) 
+	"if the collection has only one coordinate it is a point and we feed it directly"
+	(rawCoordinates size = 1)
+		ifTrue: [ | coords |
+			coords :=  $, split: rawCoordinates first.
+			currentObject 
+				x: coords first asNumber;
+				y: coords second asNumber ]
+		ifFalse: [  
+			currentObject coordinates:  (rawCoordinates collect: [ :each| | tuple |
+				tuple := $, split: each.
+				OGCPoint 
+					x: tuple first asNumber 
+					y: tuple second asNumber ]) ]
+	
 ]
 
 { #category : #visiting }
@@ -117,6 +126,17 @@ KMLModelBuilderVisitor >> visitPlacemarkElement: aKMLPlacemarkElement [
 		during: [ self visitElementWithChildren: aKMLPlacemarkElement ].
 	currentObject addFeature: placemark.
 	^ placemark
+]
+
+{ #category : #visiting }
+KMLModelBuilderVisitor >> visitPointElement: aKMLPointElement [ 
+	| point |
+	point := OGCPoint new.
+	self
+		use: point
+		during: [ self visitElementWithChildren: aKMLPointElement ].
+	currentObject addGeometry: point.
+	^ point
 ]
 
 { #category : #visiting }

@@ -92,6 +92,11 @@ KMLVisitor >> visitPlacemarkElement: aKMLPlacemarkElement [
 ]
 
 { #category : #visiting }
+KMLVisitor >> visitPointElement: aKMLPointElement [ 
+	^ self visitElementWithChildren: aKMLPointElement 
+]
+
+{ #category : #visiting }
 KMLVisitor >> visitPolyStyleElement: aKMLPolyStyleElement [ 
 	^ self visitElementWithChildren: aKMLPolyStyleElement 
 ]
