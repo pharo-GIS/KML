@@ -97,6 +97,53 @@ KMLReaderTest >> lineStringString [
 ]
 
 { #category : #'as yet unclassified' }
+KMLReaderTest >> polygonString [
+	^ '<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+
+	<name>polygon.kml</name>
+
+	<Style id="orange-5px">
+		<LineStyle>
+			<color>ff00aaff</color>
+			<width>5</width>
+		</LineStyle>
+	</Style>
+
+
+	<Placemark>  
+ <Polygon>
+  <outerBoundaryIs>
+   <LinearRing>
+    <coordinates>
+     0.0,0.0,0.0
+     1.0,15.0,0.0
+     5.0,15.0,0.0
+     5.0,0.0,0.0
+     0.0,0.0,0.0
+    </coordinates>    
+   </LinearRing>
+  </outerBoundaryIs>
+  <innerBoundaryIs>
+   <LinearRing>
+    <coordinates>
+     0.5,0.5,0.0
+     2,14.0,0.0
+     4.5,14.0,0.0
+     4.0,0.5,0.0
+     0.5,0.5,0.0
+    </coordinates>    
+   </LinearRing>
+  </innerBoundaryIs>
+ </Polygon>
+</Placemark>
+
+</Document>
+</kml>'
+]
+
+{ #category : #'as yet unclassified' }
 KMLReaderTest >> simplePlacemarkPlusHTMLString [
 	^ '<?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
@@ -168,6 +215,18 @@ KMLReaderTest >> testLineString [
 	self assert: geometry geometryType equals: 'LineString'.
 	self assert: geometry points first x equals: 8.54212380923373.
 	self assert: geometry points first y equals: 47.36651432591258.
+	
+]
+
+{ #category : #'as yet unclassified' }
+KMLReaderTest >> testPolygon [
+	| model geometry |
+	model := KMLReader parse: self polygonString.
+	self assert: model features size equals: 1.
+	geometry := model features first geometry.
+	self assert: geometry geometryType equals: 'Polygon'.
+	self assert: geometry exterorRing points second x equals: 1.0.
+	self assert: geometry interiorRings first points first y equals: 0.5.
 	
 ]
 

@@ -8,6 +8,11 @@ Class {
 }
 
 { #category : #accessing }
+KMLPolygon >> addInnerBoundary: anOGCLinearRing [ 
+	self interiorRings add: anOGCLinearRing 
+]
+
+{ #category : #accessing }
 KMLPolygon >> altitudeMode [
 	^ altitudeMode
 ]
