@@ -1,7 +1,7 @@
 KML for pharo [![Build Status](https://travis-ci.com/zweidenker/KML.svg?branch=master)](https://travis-ci.com/zweidenker/KML)
 -------------
 
-KML for pharo is a reader for KML files that supports basic element types to mainly extract geometries
+KML for pharo is a reader for KML files that supports basic element types to mainly extract geometries. For geometric objects it uses the OGC geo model from [OGC-Pharo](https://github.com/Pharo-GIS/OGC-Pharo/)
 
 It can be loaded with
 
