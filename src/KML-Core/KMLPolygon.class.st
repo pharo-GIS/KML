@@ -1,41 +1,23 @@
 Class {
 	#name : #KMLPolygon,
-	#superclass : #KMLGeometry,
+	#superclass : #OGCPolygon,
 	#instVars : [
-		'outerBoundary',
-		'innerBoundaries'
+		'altitudeMode'
 	],
 	#category : #'KML-Core'
 }
 
 { #category : #accessing }
-KMLPolygon >> addInnerBoundary: aGeometryObject [  
-	self innerBoundaries add: aGeometryObject 
-]
-
-{ #category : #converting }
-KMLPolygon >> asGeoPolygons [
-	| poly |
-	poly := Array with: outerBoundary.
-	innerBoundaries ifNotNil: [ 
-		poly := poly copyWithAll: innerBoundaries ].
-	^ poly collect: [ :each |
-		 (GJLinearRing new
-			coordinates: each coordinates) asGJPolygon ]
+KMLPolygon >> altitudeMode [
+	^ altitudeMode
 ]
 
 { #category : #accessing }
-KMLPolygon >> innerBoundaries [
-	^ innerBoundaries ifNil: [ 
-		innerBoundaries := OrderedCollection new ]
+KMLPolygon >> altitudeMode: anObject [
+	altitudeMode := anObject
 ]
 
 { #category : #accessing }
-KMLPolygon >> outerBoundary [
-	^ outerBoundary
-]
-
-{ #category : #accessing }
-KMLPolygon >> outerBoundary: aGeometryObject [ 
-	outerBoundary := aGeometryObject 
+KMLPolygon >> outerBoundary: anOGCLinearRing [ 
+	self exterorRing: anOGCLinearRing 
 ]

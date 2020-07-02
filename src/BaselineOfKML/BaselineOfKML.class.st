@@ -15,10 +15,12 @@ BaselineOfKML >> baseline: spec [
 			package: #'KML-Core' with: [
 				spec requires: #('OGC' ). ];
 			package: #'KML-Reader' with: [
-				spec requires: #('KML-Core' 'XMLParser' ). ].
+				spec requires: #('KML-Core' 'XMLParser' ). ];
+			package: #'KML-Reader-Tests' with: [
+				spec requires: #('KML-Reader' ). ].
 		spec 
 			group: 'Core' with: #('KML-Core' );
-			group: 'default' with: #('KML-Core' 'KML-Reader'). ].
+			group: 'default' with: #('KML-Core' 'KML-Reader' 'KML-Reader-Tests'). ].
 
 ]
 

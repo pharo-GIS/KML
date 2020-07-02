@@ -25,20 +25,24 @@ KMLModelBuilderVisitor >> use: aKMLObject during: aBlock [
 { #category : #visiting }
 KMLModelBuilderVisitor >> visitCoordinatesElement: aKMLCoordinatesElement [ 
 	| rawCoordinates |
-	rawCoordinates := (Character space split: aKMLCoordinatesElement contentString trimBoth) reject: #isEmpty.
+	rawCoordinates := ([:c| c isSeparator] split: aKMLCoordinatesElement contentString trimBoth) reject: #isEmpty.
 	"if the collection has only one coordinate it is a point and we feed it directly"
 	(rawCoordinates size = 1)
 		ifTrue: [ | coords |
 			coords :=  $, split: rawCoordinates first.
 			currentObject 
 				x: coords first asNumber;
-				y: coords second asNumber ]
+				y: coords second asNumber.
+			(coords size = 3) ifTrue: [ 
+				currentObject z: coords third asNumber ] ]
 		ifFalse: [  
-			currentObject coordinates:  (rawCoordinates collect: [ :each| | tuple |
+			currentObject points:  (rawCoordinates collect: [ :each| | tuple point |
 				tuple := $, split: each.
-				OGCPoint 
+				point := OGCPoint 
 					x: tuple first asNumber 
-					y: tuple second asNumber ]) ]
+					y: tuple second asNumber.
+				(tuple size = 3) ifTrue: [ 
+					point z: tuple third asNumber ] ]) ]
 	
 ]
 
@@ -80,7 +84,7 @@ KMLModelBuilderVisitor >> visitInnerBoundayIsElement: aKMLInnerBoundaryIsElement
 { #category : #visting }
 KMLModelBuilderVisitor >> visitLinearRingElement: aKMLLinearRingElement [ 
 	| linearRing |
-	linearRing := KMLLinearRing new.
+	linearRing := OGCLinearRing new.
 	self
 		use: linearRing 
 		during: [ self visitElementWithChildren: aKMLLinearRingElement ].
@@ -112,9 +116,12 @@ KMLModelBuilderVisitor >> visitOuterBoundaryIs: aKMLOuterBoundaryIsElement [
 
 { #category : #visiting }
 KMLModelBuilderVisitor >> visitParameterElement: aKMLParameterElement [ 
-	currentObject 
+	"currentObject 
 		propertyAt: aKMLParameterElement name
-		put: aKMLParameterElement contentString 
+		put: aKMLParameterElement contentString "
+	currentObject 
+		perform: aKMLParameterElement name asSymbol asMutator
+		with: aKMLParameterElement contentString
 ]
 
 { #category : #visiting }
