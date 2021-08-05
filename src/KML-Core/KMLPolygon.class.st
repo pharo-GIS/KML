@@ -24,10 +24,10 @@ KMLPolygon >> altitudeMode: anObject [
 
 { #category : #accessing }
 KMLPolygon >> outerBoundary [
-	^ self exterorRing
+	^ self exteriorRing
 ]
 
 { #category : #accessing }
 KMLPolygon >> outerBoundary: anOGCLinearRing [ 
-	self exterorRing: anOGCLinearRing 
+	self exteriorRing: anOGCLinearRing 
 ]
