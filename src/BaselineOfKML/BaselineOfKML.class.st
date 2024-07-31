@@ -41,6 +41,7 @@ BaselineOfKML >> xmlParser: spec [
 	spec
 		baseline: 'XMLParser' with: [ 
 			spec 
+				loads: 'Core';
 				repository: 'github://pharo-contributions/XML-XMLParser:3.5.0/src'].
 			
 	
